@@ -17,3 +17,24 @@
 ### 4. Protótipo
 
   Prototipagem ainda não iniciada (27/06)
+
+### 5. Recursos
+
+Para enviar e-mail sem backend-
+1. https://www.emailjs.com/ 
+
+Figma-
+1. https://www.figma.com/@rocketseat
+2. https://www.figma.com/community/file/1471120839033505457/nlw-connect-devstage
+3. https://www.figma.com/community/file/1471119935944492720/nlw-connect-devstage
+4. https://www.figma.com/community/file/1469664201049887575/sistema-de-reembolso-2-0
+5. https://www.figma.com/community/file/1448070647757721748/nlw-pocket-mobile-nearby
+6. https://www.figma.com/community/file/1438870666697133195/clickmail
+7. https://www.figma.com/community/file/1422965214657616410/lista-de-compras-desktop
+8. https://www.figma.com/community/file/1405890943950015706/gestao-de-marketplace
+9. https://www.figma.com/community/file/1402302237126862071/ama-ask-me-anything
+10. https://www.figma.com/community/file/1397279978314668489/lista-de-compras
+11. https://www.figma.com/community/file/1371886246180677672/lp-de-produto
+12. https://www.figma.com/community/tag/rocketseat
+13. https://www.figma.com/community/tag/rocketseat/files
+14. https://www.figma.com/community/file/1313455989218460480/rocketseat-ui

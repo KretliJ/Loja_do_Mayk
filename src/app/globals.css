@@ -1,26 +1,37 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  /* Lucas: Paleta retro para modo claro */
+  --font-roboto: 'Roboto', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
   --fs-sm: 1rem;
   --fs-md: 1.25rem;
   --fs-lg: 1.5rem;
   --fs-xl: 1.875rem;
+}
+
+body {
+  font-family: var(--font-roboto);
+  color: var(--foreground);
+}
+
+
+/* Suporte para tema manual */
+:root, :root.light {
+  --background: #ffffff;
+  --foreground: #171717;
 
   /* --- FUNDOS --- */
-    --bg-primary: #fdf6e3;          /* bege claro */
-    --bg-secondary: #fff8dc;        /* bege mais claro para cards */  
-    --bg-accent: #ffcc00;           /* amarelo vibrante */
-    --bg-muted: #eee8d5;            /* fundo input claro */
+    --bg-primary: #fdf6e3;         
+    --bg-secondary: #fff8dc;        
+    --bg-accent: #ffcc00;           
+    --bg-muted: #eee8d5;         
     --bg-overlay: rgba(253, 246, 227, 0.8);
 
     /* --- TEXTOS --- */
-    --text-primary: #f5f5f5;        /* texto escuro principal */
-    --text-secondary: #555555;      /* texto secundário */
-    --text-muted: #999999;          /* texto apagado */
-    --text-accent: #cc9900;         /* amarelo queimado */
+    --text-primary: #f5f5f5;       
+    --text-secondary: #555555;      
+    --text-muted: #999999; 
+    --text-accent: #cc9900;
 
     /* --- BORDAS E DIVISORES --- */
     --border-primary: #d6cfc7;
@@ -50,15 +61,15 @@
 
     /* Botões */
     --button-bg-default: var(--bg-accent);
-    --button-bg-hover: #b38f00;
+    --button-bg-hover: #e69600;
     --button-text-default: var(--bg-primary);
     --button-text-hover: var(--text-primary);
     --button-border: var(--border-accent);
 
     /* Inputs e Formulários */
     --input-bg: var(--bg-muted);
-    --input-border: var(--border-muted);
-    --input-text: var(--text-primary);
+    --input-border: var(--border-muted);  
+    --input-text: var(--text-secondary);
     --input-placeholder: var(--text-muted);
 
     /* Cabeçalhos e Títulos */
@@ -66,15 +77,71 @@
 
     /* Sombras */
     --shadow-default: rgba(204, 153, 0, 0.5);
-
-    --layer1-color: #fff4b8;  /* amarelo pastel suave */
-    --layer2-color: #f9d5e5;  /* rosa pastel claro */
-    --layer3-color: #f7b8c8;  /* rosa antigo pastel */
-    --layer4-color: #fbe8a6;  /* amarelo claro pastel */
-    --layer5-color: #c1a3c4;  /* lavanda pastel */
-    --layer6-color: #a8a0c2;  /* azul acinzentado pastel */
 }
 
+:root.dark {
+ 
+  --background: #0a0a0a;
+  --foreground: #ededed;
+
+  /* Lucas: Paleta retro adaptada para modo escuro (cores mais vibrantes, contraste maior) */    
+  /* --- FUNDOS --- */
+  --bg-primary: #121212;           
+  --bg-secondary: #222222;   
+  --bg-accent: #ffcc00;
+  --bg-muted: #3a3a3a;  
+  --bg-overlay: rgba(18, 18, 18, 0.8); 
+
+  /* --- TEXTOS --- */
+  --text-primary: #e0e0e0;         
+  --text-secondary: #cccccc;       
+  --text-muted: #999999;           
+  --text-accent: #ffcc00;          
+
+  /* --- BORDAS E DIVISORES --- */
+  --border-primary: #444444;       
+  --border-muted: #2a2a2a;         
+  --border-accent: #ffcc00;        
+  
+  /* --- CORES DE ESTADO --- */
+  --color-error: #ff4444;          
+  --color-error-dark: #aa1111;     
+  --color-success: #44ff44;        
+  --color-success-dark: #116611;   
+  --color-warning: #ffaa00;        
+  --color-warning-dark: #aa7700;  
+
+  /* --- LINKS --- */
+  --link-primary: #ffcc00;
+  --link-hover: #ffaa00;
+
+  /* Containers, Cards, Seções */
+  --container-bg: var(--bg-secondary);
+  --container-border: var(--border-primary);
+  --container-text: var(--text-primary);
+
+  /* Botões */
+  --button-bg-default: var(--bg-accent);
+  --button-bg-hover: #e69600;
+  --button-text-default: var(--bg-primary);
+  --button-text-hover: var(--text-primary);
+  --button-border: var(--border-accent);
+
+  /* Inputs e Formulários */
+  --input-bg: var(--bg-muted);
+  --input-border: var(--border-muted);
+  --input-text: var(--text-secondary);
+  --input-placeholder: var(--text-muted);
+
+  /* Cabeçalhos e Títulos */
+  --header-text: var(--text-primary);
+
+  /* Sombras */
+  --shadow-default: rgba(255, 204, 0, 0.5);
+  
+}
+
+/*
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -82,113 +149,13 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-
-    /* Lucas: Paleta retro adaptada para modo escuro (cores mais vibrantes, contraste maior) */    
-    /* --- FUNDOS --- */
-    --bg-primary: #121212;           /* fundo geral do site, escuro para destacar cores */
-    --bg-secondary: #222222;         /* fundo para seções, cards, containers */
-    --bg-accent: #ffcc00;            /* cor vibrante para destaques, botões, alertas leves */
-    --bg-muted: #3a3a3a;             /* fundo para inputs, áreas menos importantes */
-    --bg-overlay: rgba(18, 18, 18, 0.8); /* overlay/transparência */
-
-    /* --- TEXTOS --- */
-    --text-primary: #e0e0e0;         /* texto principal claro */
-    --text-secondary: #cccccc;       /* texto secundário */
-    --text-muted: #999999;           /* texto mais apagado */
-    --text-accent: #ffcc00;          /* texto para links, botões, destaques */
-
-    /* --- BORDAS E DIVISORES --- */
-    --border-primary: #444444;       /* bordas padrão */
-    --border-muted: #2a2a2a;         /* bordas suaves */
-    --border-accent: #ffcc00;        /* borda de foco, hover */
-
-    /* --- CORES DE ESTADO --- */
-    --color-error: #ff4444;          /* erro */
-    --color-error-dark: #aa1111;     /* erro escuro */
-
-    --color-success: #44ff44;        /* sucesso */
-    --color-success-dark: #116611;   /* sucesso escuro */
-
-    --color-warning: #ffaa00;        /* alerta/aviso */
-    --color-warning-dark: #aa7700;   /* alerta escuro */
-
-    /* --- LINKS --- */
-    --link-primary: #ffcc00;
-    --link-hover: #ffaa00;
-
-    /* --- ELEMENTOS SEMÂNTICOS --- */
-
-    /* Containers, Cards, Seções */
-    --container-bg: var(--bg-secondary);
-    --container-border: var(--border-primary);
-    --container-text: var(--text-primary);
-
-    /* Botões */
-    --button-bg-default: var(--bg-accent);
-    --button-bg-hover: #e6b800;
-    --button-text-default: var(--bg-primary);
-    --button-text-hover: var(--text-primary);
-    --button-border: var(--border-accent);
-
-    /* Inputs e Formulários */
-    --input-bg: var(--bg-muted);
-    --input-border: var(--border-muted);
-    --input-text: var(--text-primary);
-    --input-placeholder: var(--text-muted);
-
-    /* Cabeçalhos e Títulos */
-    --header-text: var(--text-primary);
-
-    /* Sombras */
-    --shadow-default: rgba(255, 204, 0, 0.5); /* sombra amarela vibrante */
-
-    --layer1-color: rgba(120, 80, 20, 0.9);    /* marrom dourado */
-    --layer2-color: rgba(130, 40, 70, 0.9);    /* vinho escuro */
-    --layer3-color: rgba(100, 30, 60, 0.9);    /* rosa queimado escuro */
-    --layer4-color: rgba(110, 90, 20, 0.9);    /* mostarda escura */
-    --layer5-color: rgba(80, 60, 120, 0.9);    /* lavanda profunda */
-    --layer6-color: rgba(50, 40, 90, 0.9);     /* roxo bem escuro */
-  }
-}
-
-body {
-  
-  color: var(--foreground);
-  /* Lucas: Trocar Fonte para estilo Retro */
-  /*font-family: Arial, Helvetica, sans-serif;*/
-  font-family: 'Press Start 2P', monospace;
-}
-
-
-/*
 *{
   font-family: "Helvetica Neue LT", "Helvetica Neue", "Helvetica", "Roboto", sans-serif
 }
 */
 
 
-body {
-  color: var(--foreground);
-
-  /* Lucas: Trocar Fonte para estilo Retro */
-  /*font-family: Arial, Helvetica, sans-serif;*/
-  font-family: 'Press Start 2P', monospace;
-}
-
 /* Begin - Lucas: add retro color palete e fonte */
-
-
-/* ======= Modo CRT ======= */
-body.crt {
-
-  color: #0f0;
-  text-shadow: 0 0 2px #0f0;
-  filter: contrast(1.2) brightness(0.9);
-}
 
 /* ======= Pixel art friendly ======= */
 img, canvas {
@@ -267,7 +234,7 @@ img, canvas {
 }
 
 /* Desktop e maiores */
-@media (min-width: 1024px) {3xl
+@media (min-width: 1024px) {
   :root {
     --fs-sm: 1.1rem;     /* ~17.6px */
     --fs-md: 1.35rem;    /* ~21.6px */

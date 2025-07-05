@@ -23,6 +23,7 @@ export const Producs: Produto[] = [
     Iimage: "/switch_logo.png",
     price: 2499.00,
   },
+  /*
   {
     id: "4",
     title: "Docker e DevOps",
@@ -58,6 +59,7 @@ export const Producs: Produto[] = [
     Iimage: "/images/crypto-secure.png",
     price: 219.90,
   },
+  */
 ]
 
 

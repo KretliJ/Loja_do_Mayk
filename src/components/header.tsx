@@ -21,9 +21,55 @@ const Navigation = () => (
   </>
 );
 
+type ThemeMode = "auto" | "light" | "dark";
+
 export function Header({ children }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showScrollNav, setShowScrollNav] = useState(false);
+
+  // Lucas: Add funções para controlar dark mode
+  const [mounted, setMounted] = useState(false);
+  const [theme, setTheme] = useState<ThemeMode>("auto");
+  const themeIcon = theme === "auto" ? "🖥️" : theme === "dark" ? "🌙" : "☀️";
+  const themeLabel = theme === "auto" ? "Seguir sistema" : theme === "dark" ? "Modo escuro" : "Modo claro";
+
+  // Aplicar tema no DOM
+  const applyTheme = (mode: ThemeMode) => {
+    const html = document.documentElement;
+    html.classList.remove("light", "dark");
+
+    if (mode === "dark") {
+      html.classList.add("dark");
+    } else if (mode === "light") {
+      html.classList.add("light");
+    } else {
+      // Auto: aplica com base no sistema
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      html.classList.add(prefersDark ? "dark" : "light");
+    }
+
+    localStorage.setItem("theme", mode);
+  };
+
+  // Alterna entre os temas: auto | dark | light
+  const toggleTheme = () => {
+    const next = theme === "auto" ? "dark" : theme === "dark" ? "light" : "auto";
+    setTheme(next);
+    applyTheme(next);
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    const stored = localStorage.getItem("theme") as ThemeMode | null;
+
+    if (stored === "dark" || stored === "light") {
+      setTheme(stored);
+      applyTheme(stored);
+    } else {
+      setTheme("auto");
+      applyTheme("auto");
+    }
+  }, []);
 
   const handleScroll = useCallback(
     throttle(() => {
@@ -51,35 +97,64 @@ export function Header({ children }: HeaderProps) {
     };
   }, [handleScroll]);
 
+  if (!mounted) return null;
+  
+  // Lucas: Add dark mode buttom
   return (
- <header className="fixed top-0 left-0 w-full z-50 p-3 text-center flex flex-col justify-between items-center bg-black">
-      <div className="bg-transparent flex justify-between items-center w-full">
-        <Link href="/" className="flex items-center space-x-2 bg-transparent rounded-md px-2 max-h-20 p-2">
-          <Image src={Logo} alt="MaykShop logo" sizes="80" width={340} height={80} className="md:max-w-[340px] max-h-20 object-contain py-2"/>
+    <header className="fixed top-0 left-0 w-full z-50 p-3 bg-black">
+      <div className="flex justify-between items-center w-full">
+
+        {/* Logo na esquerda */}
+        <Link href="/" className="flex items-center space-x-2 rounded-md px-2 max-h-8 p-2">
+          <Image src={Logo} alt="MaykShop logo" width={340} height={80} className="md:max-w-[340px] max-h-20 object-contain py-2" />
         </Link>
+
+        {/* Desktop */}
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Botão tema no desktop */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-gray-900 text-yellow-400 hover:bg-gray-600 transition-colors"
+            aria-label={themeLabel}
+            title={themeLabel}
+          >
+            {themeIcon}
+          </button>
+          {/* Navegação */}
+          <nav className="flex space-x-6 text-gray-400">
+            <Navigation />
+          </nav>
+        </div>
         
-        <div className="md:hidden flex items-center border-2 border-slate-600 rounded-md">
-          <button 
-            className="bg-black text-white px-4 py-2 rounded-lg text-center"
+        {/* Mobile */}
+        <div className="md:hidden flex items-center space-x-4">
+          {/* Botão tema no mobile */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-gray-700 text-yellow-400 hover:bg-gray-600 transition-colors"
+            aria-label={themeLabel}
+            title={themeLabel}
+          >
+            {themeIcon}
+          </button>
+
+          {/* Botão hambúrguer no mobile */}
+          <button
+            className="bg-black text-white px-4 py-2 rounded-lg"
             onClick={() => setMenuOpen((prev) => !prev)}
             aria-label="Menu"
           >
             ☰
           </button>
         </div>
-        
-        <nav className="hidden md:flex top-5 left-1/2 transform -translate-x-1/2 bg-transparent text-gray-400 px-6 py-3 rounded-full space-x-6 mr-0">
-          <Navigation />
-        </nav>
       </div>
 
+      {/* Menu mobile aberto */}
       {menuOpen && (
-        <nav className="mt-5 mx-auto w-full bg-black text-gray-400 flex flex-col space-y-4 py-4 px-6 shadow-lg rounded-md">
+        <nav className="mt-5 mx-auto w-full bg-black text-gray-400 flex flex-col space-y-4 py-4 px-6 shadow-lg rounded-md md:hidden">
           <Navigation />
         </nav>
       )}
-
-   
     </header>
   );
 }

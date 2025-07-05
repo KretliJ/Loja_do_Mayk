@@ -16,34 +16,23 @@
   margin: 0 auto;
   background-color: var(--bg-secondary);
   color: var(--text-primary);
-  font-family: var(--font-sans);
 }
 
 /* Botão principal */
 .button {
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
-  color: var(--white);
+  color: var(--text-secondary);
   transition: background-color 0.3s;
   cursor: pointer;
   width: auto;
   margin: 0 auto;
-  font-family: var(--font-sans);
   user-select: none;
   background-color: var(--bg-primary);
   border: 1px solid var(--border-primary);
 }
 
 /* Estados do botão */
-.buttonDefault {
-  background-color: var(--black);
-  border-color: var(--border-primary);
-}
-
-.buttonDefault:hover {
-  background-color: var(--purple-dark);
-}
-
 .buttonPending {
   background-color: var(--bg-muted);
   color: var(--text-muted);

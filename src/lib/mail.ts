@@ -11,16 +11,17 @@ export const emailSchema = z.object({
 });
 
 
-
 export const emailSchemaPay = z.object({
   name: z.string().min(3, "O nome deve ter pelo menos 3 caracteres"),
-  email: z.string().email(),
-  endereço: z.string().min(3,),
+  email: z.string().email("E-mail inválido"),
+  rua: z.string().min(3, "A rua deve ter pelo menos 3 caracteres"),
+  cidade: z.string().min(2, "A cidade deve ter pelo menos 2 caracteres"),
+  estado: z.string().min(2, "O estado deve ter pelo menos 2 caracteres"),
+  cep: z.string().min(5, "O CEP deve ter pelo menos 5 caracteres"),
+  complemento: z.string().optional(),
   formaPagamento: z.enum(['pix', 'cartao', 'boleto'], {
     errorMap: () => ({ message: 'Selecione uma forma de pagamento válida.' }),
   }),
   subject: z.string().min(3, "O assunto deve ter pelo menos 3 caracteres").optional(),
-  
-  
 });
 

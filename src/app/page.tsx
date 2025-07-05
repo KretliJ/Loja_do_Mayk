@@ -13,6 +13,9 @@ import { VendaModal } from "@/components/vendaModal";
 import { useState } from "react";
 import { Produto } from "@/types/types";
 
+import { Carousel } from "@/components/Carousel";
+import { getGames } from "@/lib/api/games";
+import { VerticalCarousel } from "@/components/VerticalCarousel";
 // export const metadata: Metadata = {
 //   title: "MaykShop | Tecnologia e Games",
 //   description: "Tecnologia e Games.",
@@ -21,7 +24,10 @@ import { Produto } from "@/types/types";
 // Lucas: Adicionar layers no fundo da página principal, seguingo estilo retro
 export default function Home() {
 
-   const [produtoSelecionado, setProdutoSelecionado] = useState<Produto | null>(null)
+  const [produtoSelecionado, setProdutoSelecionado] = useState<Produto | null>(null)
+
+  // Lucas: Mockup de items para o Carousel.
+  const games: Produto[] = getGames();
 
   return (
     <ContainerFull>
@@ -64,19 +70,53 @@ export default function Home() {
         >
           Produtos Novos e Lançamentos
         </h2>
-        <div className="flex flex-col w-full justify-center items-center mx-auto px-10 py-4 text-center md:grid md:grid-cols-2 lg:grid-cols-3 space-y-5 md:gap-5">
+        {/* Lucas: Fix - Em telas médias, como tablet (teste simulando o ipad ipadOS 14.7.1 no firefox), não estava centralizando os itens corretamente*/}
+        {/* <div className="flex flex-col w-full justify-center items-center mx-auto px-10 py-4 text-center md:grid md:grid-cols-2 lg:grid-cols-3 space-y-5 md:gap-5"> */}
+        <div className="
+          w-full 
+          mx-auto 
+          px-10 
+          py-4 
+          text-center 
+          flex flex-col justify-center items-center
+          space-y-5
+          md:grid md:grid-cols-3 md:gap-5 md:justify-items-center md:space-y-0
+          lg:grid-cols-3
+        ">
           {Producs.map((p) => (
             <Cards
               produto={p}
               key={p.id}
               onComprar={(produto) => setProdutoSelecionado(produto)}
-
             />
           ))}
-        </div>
+          </div>
         <Separator />
       </section>
 
+      {/* Lucas: Adicionar Carousel na página */}
+       <section className="w-full max-w-[1200px] mx-auto px-4 py-8">
+        <h2 className="text-4xl text-center mb-6" style={{
+          color: "var(--text-primary)",
+          fontFamily: "VCRMono",
+          fontWeight: 200,
+        }}>
+          Explore mais jogos
+        </h2>
+
+        <VerticalCarousel>
+          {games.map((p, idx) => (
+            <Cards
+              key={idx}
+              produto={p}
+              onComprar={(produto) => setProdutoSelecionado(produto)}
+            />
+          ))}
+        </VerticalCarousel>
+
+        <Separator />
+      </section>
+     
       <section>
         <div className="max-w-3xl mx-auto px-4 py-8 text-center">
           <h2
@@ -92,7 +132,7 @@ export default function Home() {
             Perguntas Frequentes
           </h2>
           <Faq
-            question="O QUEM SOMOS"
+            question="QUEM SOMOS"
             response="A MaykShop é uma empresa especializada em segmentação comercial, que reúne entusiastas e amadores da tecnologia e dos games"
           />
           <Separator />

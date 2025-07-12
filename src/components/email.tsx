@@ -74,24 +74,6 @@ export  function Email() {
         <Loading />
       ) : (
         <>
-          <TextInput
-            id="name"
-            type="text"
-            {...register("name")}
-            placeholder="Digite Seu Nome"
-            error={errors.name?.message}
-            autoFocus
-            autoComplete="off"
-          />
-
-          <TextInput
-            id="email"
-            type="email"
-            {...register("email")}
-            placeholder="Digite Seu Email"
-            error={errors.email?.message}
-            autoComplete="off"
-          />
 
           <TextInput
             id="subject"

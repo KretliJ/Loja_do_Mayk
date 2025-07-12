@@ -1,7 +1,5 @@
 /* Lucas: Crair arquivo */
 
-/* Lucas: Criar arquivo */
-
 .container {
   width: 100%;
 }
@@ -11,7 +9,6 @@
   margin-bottom: 0.25rem;
   font-weight: 500;
   color: var(--text-primary);
-  font-family: var(--font-sans);
 }
 
 .textarea {
@@ -24,7 +21,6 @@
   border-radius: 0.375rem;
   background-color: var(--input-bg);
   color: var(--input-text);
-  font-family: var(--font-sans);
   transition: box-shadow 0.2s ease;
 }
 
@@ -43,5 +39,4 @@
   width: 100%;
   text-align: center;
   margin-top: 0.25rem;
-  font-family: var(--font-sans);
 }

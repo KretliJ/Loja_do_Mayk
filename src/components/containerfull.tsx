@@ -5,8 +5,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 
-
-
 import { Email } from "@/components/email";
 
 
@@ -22,7 +20,7 @@ import { Produto } from "@/types/types";
 import { VerticalCarousel } from "@/components/VerticalCarousel";
 import { Modal } from "./modal";
 import { useCarouselProducts, useProducts } from "@/lib/api/Products";
-
+import { getGames } from "@/lib/api/games";
 
 interface ContainerProps {
   produtoDetalhes: Produto | null;
@@ -44,7 +42,7 @@ const queryClient = new QueryClient({
 export function ContainerFull({setCartCount, onClose, onComprar, onVeiw, produtoCarrinho, produtoDetalhes}: ContainerProps) {
 
   
-  const games: Produto[] = useCarouselProducts();
+  const games: Produto[] = getGames();
   const producs: Produto[] = useProducts();
 
 
@@ -52,14 +50,14 @@ export function ContainerFull({setCartCount, onClose, onComprar, onVeiw, produto
   return (
     <QueryClientProvider client={queryClient}>
       <main
-        className="relative flex-grow max-w-[1200px] text-white mx-auto bg-transparent z-10 mt-24"
+        className="relative flex-grow max-w-[1200px] text-white mx-auto z-10 mt-24"
       >
         <section>
           <div className="max-w-3xl mx-auto px-4 py-8 text-center">
             <h2
               className="text-4xl"
               style={{
-                color: "var(--text-primary)",
+                color: "var(--text-main)",
                 fontFamily: "VCRMono",
                 fontWeight: 200,
                 marginBottom: 15,
@@ -70,7 +68,7 @@ export function ContainerFull({setCartCount, onClose, onComprar, onVeiw, produto
             <p
               style={{
                 fontSize: "var(--fs-md)",
-                color: "var(--text-primary)",
+                color: "var(--text-main)",
                 textAlign: "justify",
               }}
             >
@@ -86,7 +84,7 @@ export function ContainerFull({setCartCount, onClose, onComprar, onVeiw, produto
           <h2
             className="text-4xl"
             style={{
-              color: "var(--text-primary)",
+              color: "var(--text-main)",
               fontFamily: "VCRMono",
               fontWeight: 200,
             }}
@@ -121,7 +119,7 @@ export function ContainerFull({setCartCount, onClose, onComprar, onVeiw, produto
         {/* Lucas: Adicionar Carousel na página */}
         <section className="w-full max-w-[1200px] mx-auto px-4 py-8">
           <h2 className="text-4xl text-center mb-6" style={{
-            color: "var(--text-primary)",
+            color: "var(--text-main)",
             fontFamily: "VCRMono",
             fontWeight: 200,
           }}>
@@ -148,7 +146,7 @@ export function ContainerFull({setCartCount, onClose, onComprar, onVeiw, produto
             <h2
               className="text-3xl"
               style={{
-                color: "var(--text-primary)",
+                color: "var(--text-main)",
                 fontFamily: "VCRMono",
                 fontWeight: 200,
                 textAlign: "center",
@@ -163,6 +161,21 @@ export function ContainerFull({setCartCount, onClose, onComprar, onVeiw, produto
             />
             <Separator />
           </div>
+        </section>
+
+      
+        <section className="w-full max-w-[1200px] mx-auto px-4 py-8">
+          <h2 className="text-4xl text-center mb-6" style={{
+            color: "var(--text-main)",
+            fontFamily: "VCRMono",
+            fontWeight: 200,
+          }}>
+            Fale Conosco
+          </h2>
+
+            <Email/>
+
+          <Separator />
         </section>
         
         {produtoDetalhes && (

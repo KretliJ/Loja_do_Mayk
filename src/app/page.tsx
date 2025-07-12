@@ -45,15 +45,15 @@ export default function Home() {
         cartCount={cartCount}
         onComprar={handleAbrirCarrinho}
       />
-      <ContainerFull
-        setCartCount={setCartCount}
-        onComprar={handleAdicionarAoCarrinho}
-        onVeiw={handleVerDetalhes}
-        produtoDetalhes={modalDetalhes}
-        produtoCarrinho={modalCarrinho}
-        onClose={fecharModais}
+     <ContainerFull
+  setCartCount={setCartCount}
+  onComprar={handleAdicionarAoCarrinho}
+  onVeiw={handleVerDetalhes}
+  produtoDetalhes={modalDetalhes}
+  produtoCarrinho={modalCarrinho}
+  onClose={fecharModais}
+/>
 
-      />
       <Footer />
     </>
   );

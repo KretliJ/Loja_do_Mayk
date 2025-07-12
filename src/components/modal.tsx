@@ -12,52 +12,55 @@ interface Props {
   onComprar: (produto: Produto) => void;
 }
 
-export function Modal({ produto, onClose, setCartCount, onComprar, cartCount}: Props) {
-  
-  if (!produto) return null
-  
+export function Modal({ produto, onClose, setCartCount, onComprar, cartCount }: Props) {
+  if (!produto) return null;
 
-  // adicionar item ao carrinho e fechar modal
-   const handleAddToCart = () => {
+  const handleAddToCart = () => {
     setCartCount(1);
-    onClose(); // fecha o modal
-    onComprar(produto); // chama a função de compra com o produto atual
-    // aqui você fecharia o modal
+    onClose();
+    onComprar(produto);
   };
 
   return (
-    // Lucas: Modal fecha ao clicar fora
     <div
-      className="fixed inset-0 top-10 bg-black/30 flex justify-center items-start pt-12"
-      onClick={onClose} // Clique fora fecha
+      className="fixed inset-0 top-10 bg-black/30 flex justify-center items-start pt-12 z-50"
+      onClick={onClose}
     >
       <div
-        className="w-full max-w-2xl bg-[#fff8dc] py-6 px-10 h-[600px] overflow-y-auto flex flex-col items-center rounded-lg border-gray-700 border-2 shadow-2xl text-black"
-        onClick={(e) => e.stopPropagation()} // Clique dentro não fecha
+        className="w-full max-w-2xl bg-[var(--container-bg)] text-[var(--container-text)] py-6 px-10 h-[600px] overflow-y-auto 
+                   flex flex-col items-center rounded-lg border-[var(--container-border)] border-2 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
       >
-
-        <div className="w-full py-20 max-h[500px] h-[500px] border border-gray-400 rounded-md p-8 shadow-2xl mb-1 flex justify-center overflow-hidden flex-col space-y-3">
+        <div className="w-full py-20 h-[500px] border border-[var(--input-border)] rounded-md p-8 shadow-2xl mb-1 
+                        flex justify-center overflow-hidden flex-col space-y-3">
           <img
             src={produto.Iimage}
             alt={produto.title}
             className="object-contain h-full w-full max-w-full max-h-full rounded-xl"
           />
-          <h2 className="text-xl font-bold text-center">{produto.title}</h2>
-          <p className="text-gray-600 flex flex-col md:text-lg text-base font-medium break-words max-h-20 mx-auto w-full text-center">
+
+          <h2 className="text-xl font-bold text-center text-[var(--text-primary)]">{produto.title}</h2>
+
+          <p className="text-[var(--text-muted)] flex flex-col md:text-lg text-base font-medium break-words 
+                        max-h-20 mx-auto w-full text-center">
             {produto.description}
           </p>
-          <p className="text-lg font-semibold text-center text-white bg-green-600 max-w-32 rounded-2xl px-2 mx-auto">
+
+          <p className="text-lg font-semibold text-center text-[var(--button-text-default)] 
+                        bg-[var(--color-success)] max-w-32 rounded-2xl px-2 mx-auto">
             R$ {produto.price.toFixed(2)}
           </p>
         </div>
-        <div className="flex justify- items-center w-full mb-0 mt-5 flex-col gap-2">
 
+        <div className="flex items-center w-full mt-5 flex-col gap-2">
           <button
             onClick={onClose}
-            className="bg-red-500 hover:bg-red-800 text-white px-4 py-2 rounded w-60 disabled:opacity-50 mt-3 mx-auto"
+            className="bg-[var(--color-error)] hover:bg-[var(--color-error-dark)] 
+                       text-[var(--button-text-default)] px-4 py-2 rounded w-60 disabled:opacity-50 mt-3 mx-auto"
           >
             Voltar
           </button>
+
           <AddButton handleAddToCart={handleAddToCart} />
         </div>
       </div>

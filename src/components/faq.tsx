@@ -14,7 +14,7 @@ export function Faq({ question, response }: FaqProps) {
         className="list-none text-start w-full font-semibold"
         style={{
           fontSize: "var(--fs-xl)",
-          color: "var(--text-primary)",
+          color: "var(--text-main)",
           fontFamily: "VCRMono",
           fontWeight: 200,
         }}
@@ -24,7 +24,7 @@ export function Faq({ question, response }: FaqProps) {
       <p
         style={{
           fontSize: "var(--fs-sm)",
-          color: "var(--text-primary)",
+          color: "var(--text-main)",
           fontFamily: "VCRMono",
           fontWeight: 200,
           textAlign: "justify",

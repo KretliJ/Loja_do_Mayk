@@ -22,6 +22,9 @@ import { Modal } from "./modal";
 import { useCarouselProducts, useProducts } from "@/lib/api/Products";
 import ImagemCarrossel from '@/components/ImagemCarrossel';
 import Mapa from './mapView';
+import { Carousel } from '@/components/Carousel';
+import { EmailForm } from '@/components/EmailForm';
+import CommentSection from './commentSection';
 
 
 
@@ -48,6 +51,8 @@ export function ContainerFull({ setCartCount, onClose, onComprar, onVeiw, produt
 
   const games: Produto[] = useCarouselProducts();
   const producs: Produto[] = useProducts();
+  const postId = "maykshop-pagina-principal";
+  const postTitle = "Comentários sobre a MaykShop";
 
 
 
@@ -81,6 +86,7 @@ export function ContainerFull({ setCartCount, onClose, onComprar, onVeiw, produt
           <ImagemCarrossel />
         </section>
 
+         {/*Lucas: Adicionar Carrosel de Jogos */}
         <section className="w-full mx-auto px-4 py-8 text-center">
           <h2
             className="md:text-2xl text-white font-normal text-lg mb-4"
@@ -114,35 +120,23 @@ export function ContainerFull({ setCartCount, onClose, onComprar, onVeiw, produt
         </section>
 
         <section className="w-full mx-auto px-4 py-8 text-center">
-          <h2
-            className="md:text-2xl text-white font-normal text-lg mb-4"
-
-          >
+          <h2 className="md:text-2xl text-white font-normal text-lg mb-4">
             Explore mais jogos
           </h2>
 
-          <div className="
-                  w-full 
-                  mx-auto
-                  px-24
-                  py-4 
-                  text-center 
-                  flex flex-col justify-center items-center
-                  space-y-5
-                  md:grid md:grid-cols-3 md:gap-5 md:justify-items-center md:space-y-0
-                  lg:grid-cols-3
-                
-                ">
-            {games.map((p, idx) => (
-              <Cards
-                setCartCount={setCartCount}
-                key={p.id}
-                produto={p}
+          <div className="w-full">
+            {games.length > 0 ? (
+              <Carousel
+                produtos={games}
                 onComprar={onComprar}
                 onVeiw={onVeiw}
+                setCartCount={setCartCount}
               />
-            ))}
+            ) : (
+              <p className="text-white opacity-60">Nenhum jogo encontrado.</p>
+            )}
           </div>
+
           <Separator />
         </section>
 
@@ -158,18 +152,34 @@ export function ContainerFull({ setCartCount, onClose, onComprar, onVeiw, produt
               question="QUEM SOMOS ?"
               response="A MaykShop é uma empresa especializada em segmentação comercial, que reúne entusiastas e amadores da tecnologia e dos games"
             />
-            <Separator />
+           
           </div>
+            {/*Lucas: Adicionar Formulário de Contato*/}
+            <EmailForm />
+            <Separator />
         </section>
 
         <section className="w-full mx-auto px-4 py-8 text-center">
 
           <div className="p-8 max-w-xl mx-auto">
             <h1 className="md:text-2xl text-white font-normal text-lg mb-4">Onde estamos</h1>
-            <p className="text-zinc-600 mb-4 font-sans">Confira no mapa nossa localização exata:</p>
+            <p className="text-white-600 mb-4 font-sans">Confira no mapa nossa localização exata:</p>
             <Mapa />
           </div>
         </section>
+
+       {/*Lucas: Adicionar Seção de Comentários */}
+      <section className="w-full mx-auto px-4 py-8 text-center">
+        <div className="max-w-2xl mx-auto px-4 py-8">
+          <h1 className="text-2xl font-bold mb-4">{postTitle}</h1>
+          <p>Conteúdo do post aqui...</p>
+
+          <hr className="my-8" />
+
+          <CommentSection/>
+
+        </div>
+      </section>
 
         {produtoDetalhes && (
           <Modal

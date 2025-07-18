@@ -16,7 +16,7 @@ export async function sendMail([{name, email, message, subject, }]: DataSchemaEm
         message, 
     };
     
-    const  res = await axios.post('/api/email', data);
+    const  res = await axios.post('/api/contact', data);
 
     return res.status;
        

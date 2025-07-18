@@ -1,6 +1,9 @@
+// Lucas: Adicionar funcionalidade de comentários
+
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Send } from "lucide-react";
 
 interface Comment {
@@ -11,48 +14,56 @@ interface Comment {
 }
 
 export default function CommentSection() {
-  const [comments, setComments] = useState<Comment[]>([
-     {
-    id: 1,
-    name: "Pedro",
-    message: "Esse artigo está excelente!",
-    createdAt: "17/07/2025 14:23",
-  },
-  {
-    id: 2,
-    name: "DuDU",
-    message: "Melhor jogo da atualidade. Obrigado!",
-    createdAt: "17/07/2025 15:02",
-  },
-  {
-    id: 3,
-    name: "Alice",
-    message: "Que lançamento incrível!.",
-    createdAt: "17/07/2025 15:30",
-  },
-  ]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
+  const [totalPages, setTotalPages] = useState(1);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const page = Number(searchParams.get("page") || 1);
+
+  useEffect(() => {
+    fetch(`/api/comments?page=${page}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setComments(data.comments);
+        setTotalPages(data.totalPages);
+      })
+      .catch((err) => console.error("Erro ao carregar comentários", err));
+  }, [page]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
 
-    const newComment: Comment = {
-      id: Date.now(),
-      name,
-      message,
-      createdAt: new Date().toLocaleString("pt-BR"),
-    };
+    const res = await fetch("/api/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, message }),
+    });
 
-    setComments([newComment, ...comments]);
-    setName("");
-    setMessage("");
+    if (res.ok) {
+      const newComment = await res.json();
+      setComments((prev) => [newComment, ...prev]);
+      setName("");
+      setMessage("");
+    } else {
+      alert("Erro ao enviar comentário");
+    }
+  };
+
+  const goToPage = (p: number) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("page", String(p));
+    router.push(`?${newParams.toString()}`);
   };
 
   return (
     <div className="w-full mx-auto p-4 shadow-lg rounded-2xl bg-background dark:bg-dark">
-      <h2 className="text-2xl font-bold mb-4 light:text-txlight dark:text-txDark font-sans text-center">Comentários</h2>
+      <h2 className="text-2xl font-bold mb-4 light:text-txlight dark:text-txDark font-sans text-center">
+        Comentários
+      </h2>
 
       <form onSubmit={handleSubmit} className="mb-6">
         <input
@@ -78,22 +89,43 @@ export default function CommentSection() {
 
       <div className="space-y-4">
         {comments.length === 0 ? (
-          <p className="light:text-txlight dark:text-txDark text-center font-sans ">Nenhum comentário ainda.</p>
+          <p className="light:text-txlight dark:text-txDark text-center font-sans">
+            Nenhum comentário ainda.
+          </p>
         ) : (
           comments.map((comment) => (
-            <div key={comment.id} className="bg-background dark:bg-dark p-3 rounded-lg font-sans">
+            <div
+              key={comment.id}
+              className="bg-background dark:bg-dark p-3 rounded-lg font-sans"
+            >
               <div className="flex justify-between text-sm text-zinc-500 dark:text-zinc-400 font-sans">
                 <span>{comment.name}</span>
                 <span>{comment.createdAt}</span>
               </div>
-              <p className="mt-1 text-zinc-800 dark:text-zinc-100 font-sans">{comment.message}</p>
+              <p className="mt-1 text-zinc-800 dark:text-zinc-100 font-sans">
+                {comment.message}
+              </p>
             </div>
           ))
         )}
       </div>
+
+      {/* Paginação */}
+      <div className="mt-6 flex justify-center gap-2">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+          <button
+            key={p}
+            onClick={() => goToPage(p)}
+            className={`px-3 py-1 rounded-md ${
+              page === p
+                ? "bg-green-600 text-white"
+                : "bg-zinc-200 dark:bg-zinc-700 text-zinc-800 dark:text-zinc-100"
+            }`}
+          >
+            {p}
+          </button>
+        ))}
+      </div>
     </div>
   );
 }
-// This component provides a simple comment section where users can submit their name and message.
-// It maintains a list of comments in the local state and displays them below the form.
-// The comments are displayed with the name of the commenter and the time they were created.    

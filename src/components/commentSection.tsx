@@ -12,7 +12,7 @@ interface Comment {
 
 export default function CommentSection() {
   const [comments, setComments] = useState<Comment[]>([
-     {
+  {
     id: 1,
     name: "Pedro",
     message: "Esse artigo está excelente!",

@@ -25,11 +25,7 @@ import Mapa from './mapView';
 import { EmailForm } from '@/components/emailform';
 import { ZeldaCouponModal } from '@/components/ZeldaCouponModal';
 import { Carousel } from './Carousel';
-<<<<<<< HEAD
 import GlobalCommnets from './GlobalCommnets';
-=======
-import GlobalCommnets from './globalCommnets';
->>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)
 
 
 

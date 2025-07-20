@@ -40,5 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+<<<<<<< HEAD
 database/.gitkeep
 /database/comments.db
+=======
+/database/
+>>>>>>> 3d020f9 (feat: adicionar os banners faltantes)

@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import { Send, ChevronLeft, ChevronRight } from "lucide-react";
+=======
+import { Send } from "lucide-react";
+>>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)
 
 interface Comment {
   id: number;
@@ -10,6 +14,7 @@ interface Comment {
   createdAt: string;
 }
 
+<<<<<<< HEAD
 interface Pagination {
   currentPage: number;
   totalPages: number;
@@ -47,6 +52,18 @@ export default function GlobalComments() {
 
   useEffect(() => {
     fetchComments(1);
+=======
+export default function GlobalCommnets() {
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [name, setName] = useState("");
+  const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    fetch("/api/comments")
+      .then((res) => res.json())
+      .then(setComments)
+      .catch((err) => console.error("Erro ao carregar comentários", err));
+>>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -62,7 +79,10 @@ export default function GlobalComments() {
     if (res.ok) {
       const newComment = await res.json();
       setComments((prev) => [newComment, ...prev]);
+<<<<<<< HEAD
       fetchComments(1);
+=======
+>>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)
       setName("");
       setMessage("");
     } else {
@@ -70,6 +90,7 @@ export default function GlobalComments() {
     }
   };
 
+<<<<<<< HEAD
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= pagination.totalPages) {
       fetchComments(newPage);
@@ -81,6 +102,11 @@ export default function GlobalComments() {
       <h2 className="text-2xl font-bold mb-4 text-txlight dark:text-txDark text-center font-sans">
         Comentários ({pagination.totalItems})
       </h2>
+=======
+  return (
+    <div className="w-full mx-auto p-4 shadow-lg rounded-2xl bg-background dark:bg-dark">
+      <h2 className="text-2xl font-bold mb-4 light:text-txlight dark:text-txDark font-sans text-center">Comentários</h2>
+>>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)
 
       <form onSubmit={handleSubmit} className="mb-6">
         <input
@@ -88,22 +114,35 @@ export default function GlobalComments() {
           placeholder="Seu nome"
           value={name}
           onChange={(e) => setName(e.target.value)}
+<<<<<<< HEAD
           className="w-full p-2 mb-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100"
+=======
+          className="w-full p-2 mb-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-background dark:bg-dark light:text-txlight dark:text-txDark"
+>>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)
         />
         <textarea
           placeholder="Escreva um comentário..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+<<<<<<< HEAD
           className="w-full p-2 mb-2 rounded-lg resize-none border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100"
         />
         <button
           type="submit"
           className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-xl hover:bg-green-700 transition"
+=======
+          className="w-full p-2 mb-2 rounded-lg resize-none border border-zinc-300 dark:border-zinc-700 bg-background dark:bg-dark light:text-txlight dark:text-txDark"
+        />
+        <button
+          type="submit"
+          className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-xl hover:bg-green-800 transition"
+>>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)
         >
           <Send size={16} /> Enviar
         </button>
       </form>
 
+<<<<<<< HEAD
       {isLoading ? (
         <div className="text-center py-3 text-zinc-500 dark:text-zinc-400 text-sm">Carregando...</div>
         ) : (
@@ -159,3 +198,23 @@ export default function GlobalComments() {
     </div>
   );
 }
+=======
+      <div className="space-y-4">
+        {comments.length === 0 ? (
+          <p className="light:text-txlight dark:text-txDark text-center font-sans">Nenhum comentário ainda.</p>
+        ) : (
+          comments.map((comment) => (
+            <div key={comment.id} className="bg-background dark:bg-dark p-3 rounded-lg font-sans">
+              <div className="flex justify-between text-sm text-zinc-500 dark:text-zinc-400 font-sans">
+                <span>{comment.name}</span>
+                <span>{comment.createdAt}</span>
+              </div>
+              <p className="mt-1 text-zinc-800 dark:text-zinc-100 font-sans">{comment.message}</p>
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
+>>>>>>> 32d7725 (feat: Comentários Globais com Estado Salvo no servidor)

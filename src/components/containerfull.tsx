@@ -27,7 +27,7 @@ import { EmailForm } from '@/components/emailform';
 
 import CupomTrigger from './cupomtrigger';
 import CouponCard from './CouponCard';
-import { Carousel } from './Carousel';
+import { Carousel } from '@/components/carousel';
 import GlobalComments from './GlobalComments';
 
 
@@ -129,7 +129,7 @@ export function ContainerFull({ setCartCount, onClose, onComprar, onVeiw, produt
           <Separator />
         </section>
 
-         {/* Lucas: consertar o Carrosel de jogos */}
+        {/* Lucas: consertar o Carrosel de jogos */}
         <section className="w-full mx-auto px-4 py-8 text-center">
           <h2 className="md:text-2xl text-white font-normal text-lg mb-4">
             Explore mais jogos

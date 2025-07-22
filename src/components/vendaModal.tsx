@@ -1,5 +1,5 @@
 // components/VendaModal.tsx
-import { Produto} from '@/types/types'
+import { Produto} from '../types/types'
 import { PaymentForm } from './paymentForm';
 import { Separator } from './separator';
 

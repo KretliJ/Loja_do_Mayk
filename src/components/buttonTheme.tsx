@@ -1,7 +1,6 @@
-'use client'
 
 import { MoonIcon, SunIcon } from 'lucide-react'
-import { useTheme } from '@/context/theme-context'
+import { useTheme } from '../context/theme-context'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export function ThemeToggle() {

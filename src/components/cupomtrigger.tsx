@@ -1,7 +1,5 @@
-"use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 export default function CupomTrigger({ onClick, isOpen }: { onClick: () => void, isOpen: boolean }) {
 
@@ -24,14 +22,13 @@ export default function CupomTrigger({ onClick, isOpen }: { onClick: () => void,
                     }}
                 >
                     <div className="bg-white/40 backdrop-blur-sm shadow-xl border border-gray-200 p-3 rounded-full hover:scale-105 transition-transform">
-                        <Image
+                        <img
                             src="/kokiri.png"
                             alt="Abrir cupom"
                             width={48}
                             height={48}
                             className="rounded-full object-contain"
                             title="Abrir cupom!"
-                            priority
                         />
                     </div>
                 </motion.div>

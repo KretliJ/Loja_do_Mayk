@@ -1,7 +1,5 @@
-"use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 interface ZeldaModalProps {
   isOpen: boolean;
@@ -26,10 +24,9 @@ export default function CouponCard({isOpen, onClose}:ZeldaModalProps) {
           className="fixed bottom-6 left-6 z-30 bg-background dark:bg-dark light:text-txlight dark:text-txDark shadow-2xl rounded-2xl border dark:border-gray-200  w-[250px] p-4 flex flex-col gap-4 h-[400px]"
         >
           <div className="relative w-full h-40 rounded-lg overflow-hidden">
-            <Image
+            <img
               src="/zelda10.png" // Altere para sua imagem
               alt="Promoção"
-              fill
               className="object-cover"
             />
           </div>

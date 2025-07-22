@@ -1,16 +1,9 @@
 // Desenvolvido por [Danilo Da Silva Batista] - https://github.com/kovarike
 // Este código foi criado/alterado por mim.
 
-import { Roboto} from "next/font/google";
-import Image from "next/image";
-const roboto = Roboto({
-  variable: "--font-Roboto",
-  subsets: ["latin"],
-  weight: "400"
-})
 
 
-import { Produto } from "@/types/types";
+import { Produto } from "../types/types";
 import { AddButton } from "./addButton";
 
 interface ProductCardProps {
@@ -44,7 +37,7 @@ export function Cards({ produto, onComprar, setCartCount, onVeiw}: ProductCardPr
 
       {produto.Iimage && (
         <div className="w-full h-28 flex items-center justify-center rounded mb-2 mt-0">
-          <Image
+          <img
             src={produto.Iimage}
             alt={produto.title}
             width={120}

@@ -1,33 +1,26 @@
 // Desenvolvido por [Danilo Da Silva Batista] - https://github.com/kovarike
 // Este código foi criado/alterado por mim.
-import { Press_Start_2P } from 'next/font/google'
-
-const pressStart = Press_Start_2P({
-  subsets: ['latin'],
-  weight: '400',
-  variable: '--font-press-start',
-})
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { Faq } from "@/components/faq";
-import { Separator } from "@/components/separator";
+import { Faq } from "./faq";
+import { Separator } from "./separator";
 
 import { Cards } from "../components/cards";
-import { VendaModal } from "@/components/vendaModal";
+import { VendaModal } from "./vendaModal";
 
-import { Produto } from "@/types/types";
+import { Produto } from "../types/types";
 
 import { Modal } from "./modal";
-import { useCarouselProducts, useProducts } from "@/lib/api/Products";
-import ImagemCarrossel from '@/components/ImagemCarrossel';
+import { useCarouselProducts, useProducts } from "../lib/api/Products";
+import ImagemCarrossel from './ImagemCarrossel';
 import Mapa from './mapView';
-import { EmailForm } from '@/components/emailform';
+import { EmailForm } from './emailform';
 
 
 import CupomTrigger from './cupomtrigger';
 import CouponCard from './CouponCard';
-import { Carousel } from '@/components/carousel';
+import { Carousel } from './carousel';
 import GlobalComments from './GlobalComments';
 
 
@@ -69,7 +62,7 @@ export function ContainerFull({ setCartCount, onClose, onComprar, onVeiw, produt
   return (
     <QueryClientProvider client={queryClient}>
       <main
-        className={`relative flex-grow md:max-w-[1200px] text-white md:mx-auto bg-transparent z-10 mt-24 w-full ${pressStart.variable}`}
+        className={`relative flex-grow md:max-w-[1200px] text-white md:mx-auto bg-transparent z-10 mt-24 w-full`}
       >
         <section className="w-full mx-auto px-4 py-8 text-center">
           <div className="max-w-3xl mx-auto px-4 py-8 text-center">
@@ -179,21 +172,6 @@ export function ContainerFull({ setCartCount, onClose, onComprar, onVeiw, produt
             <Mapa />
           </div>
         </section>
-
-        <section className="w-full mx-auto px-4 py-8 text-center">
-          <Separator />
-        <div className="max-w-3xl mx-auto px-4 py-8 text-center">
-          <h2 className="md:text-2xl text-white font-normal text-lg mb-4">
-            Compartilhe sua Experiência
-          </h2>
-        </div>
-
-        {/*Lucas: Adicionar Comentários Globais*/}
-        <GlobalComments />
-
-        {/* Espaço extra entre os comentários e o rodapé */}
-        <div className="h-16 md:h-32" />
-      </section>
 
       <CupomTrigger isOpen={isZeldaModalOpen} onClick={() => setIsZeldaModalOpen(true)}/>
 

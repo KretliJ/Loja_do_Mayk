@@ -46,7 +46,13 @@ O principal objetivo do projeto é proporcionar uma experiência de compra desco
 git clone https://github.com/KretliJ/Loja_do_Mayk.git
 cd Loja_do_Mayk
 npm install
-npm start
+npm run 
+
+# Para build estatico
+npm run build
+
+# Para deploy no github.pages
+npm run deploy
 ```
 
 ### Contribuição

@@ -1,11 +1,9 @@
 // Lucas: Criar componente
 
-'use client';
-
 import { useRef } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Cards } from './cards';
-import type { Produto } from '@/types/types';
+import type { Produto } from '../types/types';
 
 interface CarouselProps {
   produtos: Produto[];

@@ -3,12 +3,10 @@
 
 "use client";
 import { useState, useEffect, useCallback } from "react";
-import Image from "next/image";
-import Link from "next/link";
 
-import Logo from "../../public/logo.png"
 
-import { throttle } from "lodash";
+
+import { throttle } from "lodash-es";
 import { ShoppingCart } from "lucide-react";
 import { ThemeToggle } from "./buttonTheme";
 
@@ -19,6 +17,7 @@ interface NavProps {
   score: number,
 }
 
+const Logo = "logo.png"
 
 
 const Navigation = ({ cartCount, onComprar}: NavProps) => {
@@ -110,9 +109,9 @@ export function Header({  cartCount, onComprar, score}: NavProps) {
       <div className="flex justify-between items-center w-full">
 
         {/* Logo na esquerda */}
-        <Link href="/" className="flex items-center space-x-2 rounded-md px-2 max-h-8 p-2">
-          <Image src={Logo} alt="MaykShop logo" width={340} height={80} className="md:max-w-[340px] max-h-20 object-contain py-2" aria-label="MaykShop" title="MaykShop"/>
-        </Link>
+        <a href="/" className="flex items-center space-x-2 rounded-md px-2 max-h-8 p-2">
+          <img src={Logo} alt="MaykShop logo" width={340} height={80} className="md:max-w-[340px] max-h-20 object-contain py-2" aria-label="MaykShop" title="MaykShop"/>
+        </a>
       
 
         {/* Desktop */}

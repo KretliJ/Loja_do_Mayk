@@ -1,7 +1,5 @@
 // src/hooks/useProducts.ts
-'use client';
-
-import { Produto } from "@/types/types";
+import { Produto } from "../../types/types";
 import { useEffect, useState } from "react";
 
 export function useProducts(): Produto[] {

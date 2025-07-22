@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+
+:root {
+  --font-roboto: 'Roboto', sans-serif;
+ 
+
+}
+
+
+/* body{
+  font-family: var(--font-roboto);
+  
+} */
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+/*For example*/
+[data-theme='light'] {
+
+
+  /* --- FUNDOS --- */
+    --bg-primary: #fdf6e3;         
+  
+
+    /* --- TEXTOS --- */
+    --text-light: #000000;       
+    
+}
+
+[data-theme='dark'] {
+
+  
+  --text-dark: #ffffff; 
+
+  --bg-dark: 	#121212; 
+  
+}
+
+@theme {
+  --color-bg-dark: var(--bg-dark);
+  --color-txDark: var(--text-dark);
+
+
+  --color-background: var(--bg-primary);
+  --color-txlight: var(--text-light);
+
+  --color-dark: 	#121212;
+  --color-light: #fdf6e3;
+  --font-sans: 'Roboto', sans-serif;
+  --font-mono: 'Press Start 2P', monospace;
+
+  
+
+  
+}
+
+
+*{
+  /* Estilização padrão para navegadores baseados em WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;               /* Largura do scroll vertical */
+  height: 8px;              /* Altura do scroll horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;  /* Fundo do trilho */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.5); /* Cor do scroll com transparência */
+  border-radius: 10px;      /* Bordas arredondadas */
+  border: 2px solid transparent; /* Espaço entre o thumb e o track */
+  background-clip: padding-box;  /* Garante o arredondamento correto */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;           /* Scroll mais fino */
+  scrollbar-color: rgba(100, 100, 100, 0.5) transparent; /* Cor do thumb e do trilho */
+}
+
+
+
+}
+
+img, canvas {
+  image-rendering: pixelated;
+}
+
+
+
+
+
+/* ======= Base retrô: títulos e links ======= */
+@layer base {
+  h1, h2, h3, h4, h5, h6, li{
+    font-family: 'Press Start 2P', Roboto, sans-serif;
+   
+    /* letter-spacing: 0.05em; */
+  }
+  p{
+    font-family: 'Press Start 2P', Roboto, sans-serif;
+    letter-spacing: 0;
+  }
+
+
+}
+
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

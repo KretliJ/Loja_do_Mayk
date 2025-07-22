@@ -2,7 +2,6 @@
 // Este código foi criado/alterado por mim.
 
 import { Instagram, Linkedin } from "lucide-react";
-import Link from "next/link";
 
 
 export function Footer() {
@@ -34,12 +33,12 @@ export function Footer() {
         <div className="flex flex-col space-y-4 items-center">
 
           <div className="flex space-x-8 items-center justify-center">
-            <Link href="https://www.instagram.com/p/CsB3sAeusrk/?img_index=1" target="_blank">
+            <a href="https://www.instagram.com/p/CsB3sAeusrk/?img_index=1" target="_blank" rel="noopener noreferrer">
               <Instagram size={24} />
-            </Link>
-            <Link href="https://www.linkedin.com/company/visaojr/?originalSubdomain=br" target="_blank">
+            </a>
+            <a href="https://www.linkedin.com/company/visaojr/?originalSubdomain=br" target="_blank" rel="noopener noreferrer">
               <Linkedin size={24} />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

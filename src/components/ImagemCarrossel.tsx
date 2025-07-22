@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import classNames from "classnames";
 
 const imagens = [
   "/carousel-image/ps5-pro.jpeg",
@@ -96,10 +95,6 @@ const ImagemCarrossel = () => {
           <button
             key={idx}
             onClick={() => irParaSlide(idx)}
-            className={classNames(
-              "w-3 h-3 rounded-full",
-              idx === indexAtual ? "bg-white" : "bg-gray-400"
-            )}
           />
         ))}
       </div>

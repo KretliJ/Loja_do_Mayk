@@ -1,12 +1,11 @@
 // components/PaymentForm.tsx
-"use client";
-import { Produto } from '@/types/types';
+import { Produto } from '../types/types';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { sendMailPay } from "@/lib/http/sendmail";
-import { emailSchemaPay } from '@/lib/mail';
+import { sendMailPay } from "../lib/http/sendmail";
+import { emailSchemaPay } from '../lib/mail';
 import { Loading } from './loading';
 import { Separator } from './separator';
 

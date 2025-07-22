@@ -1,5 +1,5 @@
 // components/VendaModal.tsx
-import { Produto } from '@/types/types'
+import { Produto } from '../types/types'
 import { AddButton } from './addButton';
 import { Loading } from './loading';
 import CommentSection from './commentSection';

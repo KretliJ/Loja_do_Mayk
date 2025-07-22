@@ -1,10 +1,8 @@
 // Lucas: Criar componente de contatosp
 
-'use client';
-
 import { useState } from 'react';
 import { z } from 'zod';
-import { sendMail } from '@/lib/http/sendmail';
+import { sendMail } from '../lib/http/sendmail';
 import { Loader2, Send } from 'lucide-react';
 
 const schema = z.object({

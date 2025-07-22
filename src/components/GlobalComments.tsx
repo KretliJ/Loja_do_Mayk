@@ -1,7 +1,5 @@
 // Lucas: Criar componente
 
-"use client";
-
 import { useEffect, useState } from "react";
 import { Send, ChevronLeft, ChevronRight } from "lucide-react";
 
